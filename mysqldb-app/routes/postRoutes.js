@@ -5,6 +5,9 @@ const Controllers = require("../controllers");
 router.get('/', (req, res) => {
     Controllers.postController.getPosts(res);
 })
+router.get('/:postId/comments', (req, res) => {
+    Controllers.postController.getCommentsForPost(req, res);
+})
 router.post('/create', (req, res) => {
     Controllers.postController.createPost(req.body, res)
 })

@@ -1,5 +1,6 @@
 "use strict";
 const Models = require("../models");
+
 const getUsers = (res) => {
     Models.User.findAll({}).then(function (data) {
         res.send({ result: 200, data: data })
@@ -7,6 +8,21 @@ const getUsers = (res) => {
         throw err
     })
 }
+
+const getAllUsersPosts = (req, res) => {
+    let { userId } = req.params
+    console.log(userId + 'Hello this is the userid')
+    Models.Post.findAll({
+        where: {
+            userId: userId
+        }
+    }).then(function (data) {
+        res.send({ result: 200, data: data })
+    }).catch(err => {
+        throw err
+    })
+}
+
 const createUser = (data, res) => {
     Models.User.create(data).then(function (data) {
         res.send({ result: 200, data: data })
@@ -37,5 +53,5 @@ const deleteUser = (req, res) => {
     })
 }
 module.exports = {
-    getUsers, createUser, updateUser, deleteUser
+    getUsers, createUser, updateUser, deleteUser, getAllUsersPosts
 }

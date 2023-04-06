@@ -9,6 +9,21 @@ const getPosts = (res) => {
         throw err
     })
 }
+
+const getCommentsForPost = (req, res) => {
+    let { postId } = req.params
+    console.log(postId + 'hello')
+    Models.Comment.findAll({
+        where: {
+            postId: postId
+        }
+    }).then(function (data) {
+        res.send({ result: 200, data: data })
+    }).catch(err => {
+        throw err
+    })
+}
+
 const createPost = (data, res) => {
     Models.Post.create(data).then(function (data) {
         res.send({ result: 200, data: data })
@@ -39,5 +54,5 @@ const deletePost = (req, res) => {
     })
 }
 module.exports = {
-    getPosts, createPost, updatePost, deletePost
+    getPosts, createPost, updatePost, deletePost, getCommentsForPost
 }

@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Controllers = require("../controllers");
+
 router.get('/', (req, res) => {
     Controllers.userController.getUsers(res);
+})
+router.get('/posts/:userId', (req, res) => {
+    Controllers.userController.getAllUsersPosts(req, res);
 })
 router.post('/create', (req, res) => {
     Controllers.userController.createUser(req.body, res)
