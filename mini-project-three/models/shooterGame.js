@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const ShooterGameSchema = new Schema({
     gameId: { type: Number, required: true, unique: true },
     title: { type: String, trim: true, required: true },
-    short_description: { type: String, trim: true, required: true, unique: true },
+    short_description: { type: String, trim: true, required: true },
     genre: { type: String },
     platform: { type: String },
     publisher: { type: String },

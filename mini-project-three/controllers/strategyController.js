@@ -59,9 +59,8 @@ const deleteGame = (req, res) => {
 const initialiseCollection = async (url) => {
     await Models.StrategyGame.deleteMany({});
     try {
-        let games;
-        await axios.get(url)
-            .then(response => games = response.data)
+        const response = await axios.get(url)
+        const games = await response.data
         for (let game of games) {
             const gameEntry = new Models.StrategyGame({
                 gameId: game.id,
@@ -81,6 +80,7 @@ const initialiseCollection = async (url) => {
         console.log(error)
     }
 }
+
 
 
 
